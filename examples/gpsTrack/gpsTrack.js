@@ -1,7 +1,6 @@
 "use strict";
 // This example streams the video to a browser with an mjpeg stream
-var STEER_STRAIGHT = -0.4,
-    fs = require("fs"),
+var fs = require("fs"),
     client = require('../../lib/car'),
     http = require('http'),
     target = { longitude: -0.7425767, latitude: 51.9973139 },
@@ -17,7 +16,7 @@ client.discover()
     }).then(function () {
         console.log("Yay! start work");
 
-        client.steer(STEER_STRAIGHT);
+        client.steer(0);
         var streams = [],
             counter = 0;
 
@@ -52,9 +51,9 @@ client.discover()
                     steeringRequired = (steeringRequired > 0) ? 1 : -1;
                 }
 
-                client.steer(-steeringRequired);
+                client.steer(steeringRequired);
                 setTimeout(function () {
-                    client.steer(STEER_STRAIGHT);
+                    client.steer(0);
                 }, 500);
                 position.steeringRequired = steeringRequired;
             }
