@@ -21,10 +21,9 @@ client.discover()
             counter = 0;
 
         var updateCarPosition = function (position) {
-            if (counter === 0) {
-                // Forward
-                client.move(0.4);
-            }
+            console.log("Counter", counter);
+            // Forward
+            client.move(0.4);
             if (counter > 1) {
                 var lastPosition = positions[positions.length - 1],
                     dLat = position.latitude - lastPosition.latitude,
