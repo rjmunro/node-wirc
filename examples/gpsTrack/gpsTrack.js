@@ -70,7 +70,7 @@ client.discover()
                 });
                 req.on('end', function () {
                     console.log(body);
-                    var position = JSON.parse(body);
+                    var position = JSON.parse(body).coords;
 
                     updateCarPosition(position);
                     positions.push(position);
