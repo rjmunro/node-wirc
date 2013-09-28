@@ -33,6 +33,10 @@ client.discover()
                 position.heading = heading;
                 console.log("dLat", dLat, "dLon", dLon);
                 console.log("Heading: ", heading);
+                if (isNaN(heading)) {
+                    console.log("NaN, Skipping");
+                    return;
+                }
 
                 var dLatTarget = target.latitude - position.latitude,
                     dLonTarget = target.longitude - position.longitude,
