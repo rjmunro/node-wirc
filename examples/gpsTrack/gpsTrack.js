@@ -19,18 +19,17 @@ client.discover()
         var streams = [],
             counter = 0;
 
-            updateCarPosition = function (position) {
-               if (counter === 0) {
-                   // Forward
-                   client.move(.4);
-               }
-               if (counter > 2) {
-                   // Stop
-                   client.move(0);
-               }
-               counter += 1;
-           };
-
+        var updateCarPosition = function (position) {
+            if (counter === 0) {
+                // Forward
+                client.move(.4);
+            }
+            if (counter > 2) {
+                // Stop
+                client.move(0);
+            }
+            counter += 1;
+        };
 
 
         var server = http.createServer(function (req, res) {
