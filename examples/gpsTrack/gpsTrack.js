@@ -71,9 +71,9 @@ client.discover()
                 req.on('end', function () {
                     console.log(body);
                     var position = JSON.parse(body);
-                    positions.push(position);
 
                     updateCarPosition(position);
+                    positions.push(position);
                     //var POST = qs.parse(body);
                 });
 
