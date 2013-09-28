@@ -19,7 +19,7 @@ client.discover()
             updateCarPosition = function (position) {
                if (counter === 0) {
                    // Forward
-                   client.move(.2);
+                   client.move(.4);
                }
                if (counter > 2) {
                    // Stop
