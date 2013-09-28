@@ -24,9 +24,30 @@ client.discover()
                 // Forward
                 client.move(0.4);
             }
-            if (counter > 2) {
-                // Stop
-                client.move(0);
+            if (counter > 1) {
+                var lastPosition = positions[positions.length - 1],
+                    dLat = position.latitude - lastPosition.latitude,
+                    dLon = position.longitude - lastPosition.longitude,
+                    heading = Math.atan(dLat / dLon) / Math.PI * 180,
+                    dHeading = heading - lastPosition.heading;
+                position.heading = heading;
+                console.log("dLat", dLat, "dLon", dLon);
+                console.log("Heading: ", heading);
+
+                var dLatTarget = target.latitude - position.latitude,
+                    dLonTarget = target.longitude - position.longitude,
+                    targetHeading = Math.atan(dLatTarget / dLonTarget) / Math.PI * 180,
+                    steeringRequired = (targetHeading - heading) / 90;
+
+                console.log("dLatTarget", dLatTarget, "dLonTarget", dLonTarget);
+                console.log("Target Heading: ", targetHeading);
+                console.log("Steering: ", steeringRequired);
+                if (Math.abs(steeringRequired) > 1) {
+                    steeringRequired = (steeringRequired > 0) ? 1 : -1;
+                }
+
+                client.steer(-steeringRequired);
+                position.steeringRequired = steeringRequired;
             }
             counter += 1;
         };
