@@ -25,13 +25,17 @@ client.discover()
             // Forward
             client.move(0.4);
             if (counter > 1) {
-                var lastPosition = positions[positions.length - 1],
-                    dLat = position.latitude - lastPosition.latitude,
-                    dLon = position.longitude - lastPosition.longitude,
-                    heading = Math.atan(dLon / dLat) / Math.PI * 180,
-                    dHeading = heading - lastPosition.heading;
-                position.heading = heading;
-                console.log("dLat", dLat, "dLon", dLon);
+                if (position && position.heading) {
+                    heading = position.heading;
+                } else {
+                    var lastPosition = positions[positions.length - 1],
+                        dLat = position.latitude - lastPosition.latitude,
+                        dLon = position.longitude - lastPosition.longitude,
+                        heading = Math.atan(dLon / dLat) / Math.PI * 180,
+                        dHeading = heading - lastPosition.heading;
+                    position.heading = heading;
+                    console.log("dLat", dLat, "dLon", dLon);
+                }
                 console.log("Heading: ", heading);
                 if (isNaN(heading)) {
                     console.log("NaN, Skipping");
