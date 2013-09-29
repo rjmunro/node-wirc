@@ -5,5 +5,5 @@ navigator.geolocation.watchPosition(function (position) {
     $.ajax('/updatePosition', { method: "POST", data: JSON.stringify(position) });
 }, function (error) {
     alert(JSON.stringify(error));
-});
+}, { enableHighAccuracy: true });
 
