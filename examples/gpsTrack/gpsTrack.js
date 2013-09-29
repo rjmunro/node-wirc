@@ -40,8 +40,16 @@ client.discover()
 
                 var dLatTarget = target.latitude - position.latitude,
                     dLonTarget = target.longitude - position.longitude,
-                    targetHeading = Math.atan(dLonTarget / dLatTarget) / Math.PI * 180,
-                    steeringRequired = (targetHeading - heading) / 90;
+                    targetHeading = Math.atan(dLonTarget / dLatTarget) / Math.PI * 180;
+
+                var angleCorrection = (targetHeading - heading);
+                if (angleCorrection <= -180) {
+                    angleCorrection += 360;
+                }
+                if (angleCorrection > 180) {
+                    angleCorrection -= 360;
+                }
+                var steeringRequired = angleCorrection / 90;
 
                 console.log("dLatTarget", dLatTarget, "dLonTarget", dLonTarget);
                 console.log("Target Heading: ", targetHeading);
