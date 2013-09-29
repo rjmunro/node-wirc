@@ -28,7 +28,7 @@ client.discover()
                 var lastPosition = positions[positions.length - 1],
                     dLat = position.latitude - lastPosition.latitude,
                     dLon = position.longitude - lastPosition.longitude,
-                    heading = Math.atan(dLat / dLon) / Math.PI * 180,
+                    heading = Math.atan(dLon / dLat) / Math.PI * 180,
                     dHeading = heading - lastPosition.heading;
                 position.heading = heading;
                 console.log("dLat", dLat, "dLon", dLon);
@@ -40,7 +40,7 @@ client.discover()
 
                 var dLatTarget = target.latitude - position.latitude,
                     dLonTarget = target.longitude - position.longitude,
-                    targetHeading = Math.atan(dLatTarget / dLonTarget) / Math.PI * 180,
+                    targetHeading = Math.atan(dLonTarget / dLatTarget) / Math.PI * 180,
                     steeringRequired = (targetHeading - heading) / 90;
 
                 console.log("dLatTarget", dLatTarget, "dLonTarget", dLonTarget);
