@@ -87,6 +87,8 @@ client.discover()
                 fs.createReadStream("phone.html").pipe(res);
             } else if (req.url === "/jquery-2.0.3.js") {
                 fs.createReadStream("jquery-2.0.3.js").pipe(res);
+            } else if (req.url === "/jquery-1.10.2.min.js") {
+                fs.createReadStream("jquery-1.10.2.min.js").pipe(res);
             } else if (req.url === "/phone/script.js") {
                 fs.createReadStream("phone-script.js").pipe(res);
             } else if (req.url === "/updatePosition") {
