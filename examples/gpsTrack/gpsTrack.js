@@ -17,7 +17,8 @@ client.discover()
         console.log("Yay! start work");
 
         client.steer(0);
-        var streams = [],
+        var heading, dheading,
+            streams = [],
             counter = 0;
 
         var updateCarPosition = function (position) {
@@ -30,9 +31,8 @@ client.discover()
                 } else {
                     var lastPosition = positions[positions.length - 1],
                         dLat = position.latitude - lastPosition.latitude,
-                        dLon = position.longitude - lastPosition.longitude,
-                        heading = Math.atan(dLon / dLat) / Math.PI * 180,
-                        dHeading = heading - lastPosition.heading;
+                        dLon = position.longitude - lastPosition.longitude;
+                    heading = Math.atan(dLon / dLat) / Math.PI * 180;
                     position.heading = heading;
                     console.log("dLat", dLat, "dLon", dLon);
                 }
@@ -42,6 +42,7 @@ client.discover()
                     return;
                 }
 
+                // dHeading = heading - lastPosition.heading;  // Change of heading caused by last steering input
                 var dLatTarget = target.latitude - position.latitude,
                     dLonTarget = target.longitude - position.longitude,
                     targetHeading = Math.atan(dLonTarget / dLatTarget) / Math.PI * 180;
